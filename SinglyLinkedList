@@ -1,0 +1,114 @@
+package DSA;
+
+public class SinglyLinkedList {
+
+	Node head = null;
+	Node last = null;
+	int size = 0;
+
+	static class Node {
+		int data;
+		Node next;
+
+		Node(int data) {
+			this.data = data;
+			this.next = null;
+
+		}
+	}
+
+	public void insertFirst(int data) {
+
+		Node new_node = new Node(data);
+		size++;
+		if (head == null)
+			head = new_node;
+		else {
+			new_node.next = head;
+			head = new_node;
+		}
+
+	}
+
+	public void insertLast(int data) {
+		Node new_node = new Node(data);
+		size++;
+		if (head == null) {
+			head = new_node;
+			last = new_node;
+		} else {
+			last.next = new_node;
+			last = new_node;
+		}
+
+	}
+
+	public void insertAt(int position, int data) throws Exception {
+
+		Node new_node = new Node(data);
+
+		if (position < 0)
+			throw new Exception("invaild position");
+
+		if (position >= size)
+			insertLast(data);
+		else if (position == 0) {
+			insertFirst(data);
+		} else {
+			Node temp = getAt(position - 1);
+			new_node.next = temp.next;
+			temp.next = new_node;
+			size++;
+		}
+
+	}
+
+	public Node getLast() throws Exception {
+		if (this.size == 0) {
+			throw new Exception("Linked List is empty");
+		}
+		return last;
+	}
+
+	public Node getAt(int position) {
+
+		Node temp = head;
+
+		for (int i = 1; i < position; i++)
+			temp = temp.next;
+		return temp;
+
+	}
+
+	public void display() {
+		Node temp = this.head;
+		System.out.println("----------------------");
+		while (temp != null) {
+			System.out.print(temp.data + " ");
+			temp = temp.next;
+		}
+		System.out.println();
+		System.out.println("----------------------");
+		System.out.println("Size ---" + size);
+	}
+
+	public static void main(String args[]) throws Exception {
+
+		SinglyLinkedList singly = new SinglyLinkedList();
+		singly.insertLast(10);
+		singly.insertLast(20);
+		singly.insertLast(30);
+		singly.insertLast(40);
+		singly.insertAt(2, 101);
+		singly.insertAt(3, 1101);
+		singly.insertAt(6, 17101);
+
+		singly.display();
+		System.out.println(singly.getLast().data);
+		System.out.println("----------------------");
+		System.out.println(singly.getAt(2).data);
+
+	}
+}
+
+//10 101 1101 20 30 40 17101 
