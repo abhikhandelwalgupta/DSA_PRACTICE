@@ -1,0 +1,29 @@
+4444
+4444
+4444
+4444
+
+
+-------------------------------------------
+
+#include<iostream>
+using namespace std;
+
+
+int main(){
+
+    int n=0,i=1,j=1;
+    cin>>n;
+    
+    while(i<=n) {
+        j=1;
+        while(j<=n) {
+            j++;
+            cout<<n;
+        }
+        i++;
+        cout<<endl;
+    }
+}
+
+
