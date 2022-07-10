@@ -1,0 +1,42 @@
+        1
+      212
+    32123
+  4321234
+543212345
+
+-----------------------------------
+
+
+#include<iostream>
+using namespace std;
+
+int main(){
+
+  // Write your code here  
+
+  int n,sp,i=1,j,temp;
+    cin>>n;
+    
+    while(i<=n) {
+        sp=1;
+        while(sp<=(n-i)) {
+            cout<<" ";
+            sp++;
+        }
+        temp=i+1;j=1;
+        
+        while(j<= (i*2)-1) {
+            if(j<=i) {
+                 --temp;
+               
+            } else {
+                ++temp;        
+            }
+          cout<<temp; 
+            j++;
+        }
+        i++;
+        cout<<endl;
+    }
+}
+
