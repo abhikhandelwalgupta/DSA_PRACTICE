@@ -1,0 +1,51 @@
+  *
+ ***
+*****
+ ***
+  *
+  
+  --------------------------------------------------
+  
+  #include<iostream>
+using namespace std;
+
+
+int main() {
+    
+    int  n,i=1,j=1,sp,mid;
+    cin>>n;
+    mid = (n+1)/2;
+    
+    while(i <= mid) {
+        
+        sp=1;
+        while(sp<=mid-i) {
+            cout<<" ";
+            sp++;
+        }
+        j=1;
+        while(j<=(i*2)-1 ){
+            cout<<"*";
+            j++;
+        }
+        i++;
+        cout<<endl;
+    }
+    
+    i=mid-1;
+    
+    while(i>=0) {
+        sp=1;
+        while(sp<=mid-i ) {
+            cout<<" ";
+            sp++;
+        }
+        j=1;
+        while(j<=(i*2)-1) {
+            j++;
+            cout<<"*";
+        }
+        cout<<endl;
+        i--;
+    } 
+}
