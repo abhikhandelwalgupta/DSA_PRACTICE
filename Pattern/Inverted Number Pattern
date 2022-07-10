@@ -1,0 +1,30 @@
+4444
+333
+22
+1
+
+------------------------------------
+
+
+#include<iostream>
+using namespace std;
+
+
+int main(){
+
+    int n,i=1,j=1 , rep=0;
+    cin>>n;
+    
+    while(i<=n) {
+        rep = (n-i)+1;
+        j=1;
+        while(j<= rep) {
+            cout<<rep;
+            j++;
+        }
+        i++;
+        cout<<endl;
+    }
+  
+}
+
