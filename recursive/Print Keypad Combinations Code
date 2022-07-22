@@ -1,0 +1,73 @@
+Given an integer n, using phone keypad find out and print all the possible strings that can be made using digits of input n.
+Note : The order of strings are not important. Just print different strings in new lines.
+Input Format :
+Integer n
+Output Format :
+All possible strings in different lines
+Constraints :
+1 <= n <= 10^6
+Sample Input:
+23
+Sample Output:
+ad
+ae
+af
+bd
+be
+bf
+cd
+ce
+cf
+
+
+==========================================================
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int reverse(int number) {
+    int rev =0;
+     while (number != 0)
+    {
+        /* code */
+        int n = number % 10;
+        rev = rev*10+n;
+        number = number /10;
+    }
+    return rev;
+}
+
+void solve(int num,string output,int index,string mapping[],int n) {
+    
+    if(num==0){
+         cout<<output<<endl;
+        return;
+    }
+    n = num%10;
+    num = num/10;
+    string value = mapping[n];
+    
+    for(int i=0;i<value.length();i++) {
+        output.push_back(value[i]);
+        solve(num,output,index+1,mapping,n);
+        output.pop_back();
+        
+    }
+}
+void printKeypad(int num){
+    /*
+    Given an integer number print all the possible combinations of the keypad. You do not need to return anything just print them.
+    */
+    num = reverse(num);
+    if(num==0 || num==1) {
+        cout<<" ";
+        return;
+    }
+    string output="";
+    int index =0;
+    string mapping[] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+    int n;
+    solve(num,output,index,mapping,n);
+
+}
