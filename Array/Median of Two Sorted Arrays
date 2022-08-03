@@ -1,0 +1,80 @@
+//LetCode 
+
+Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
+
+The overall run time complexity should be O(log (m+n)).
+
+ 
+
+Example 1:
+
+Input: nums1 = [1,3], nums2 = [2]
+Output: 2.00000
+Explanation: merged array = [1,2,3] and median is 2.
+Example 2:
+
+Input: nums1 = [1,2], nums2 = [3,4]
+Output: 2.50000
+Explanation: merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.
+ 
+
+Constraints:
+
+nums1.length == m
+nums2.length == n
+0 <= m <= 1000
+0 <= n <= 1000
+1 <= m + n <= 2000
+-106 <= nums1[i], nums2[i] <= 106
+
+
+====================================================
+
+#include<iostream>
+#include<vector>
+using namespace std;
+
+double  solution(vector<int> num1,vector<int> num2) {
+    
+    int i=0,j=0;
+    vector<int> temp;
+
+    while (i < num1.size() && j<num2.size())
+    {
+        if(num1[i] < num2[j]) {
+            temp.push_back(num1[i++]);
+        } else {
+            temp.push_back(num2[j++]);
+        }
+    }
+
+   
+    for (; i < num1.size(); i++) {
+        temp.push_back(num1[i]);
+     }
+    
+    for (; j < num2.size(); j++) {
+        temp.push_back(num2[j]);
+    }
+
+ 
+
+     double ans;
+     int tempSize  = temp.size();
+     if(tempSize % 2 ==0) {
+         ans = (temp[tempSize / 2] + temp[ (tempSize/2)-1] )/2.0;
+     } else {
+         ans = temp[temp.size()/2];
+     }
+
+     return ans;
+    
+}
+int main() {
+
+    vector<int> num1 = {2, 3, 5, 8};
+    vector<int> num2 = {10, 12, 14, 16, 18, 20};
+    cout<<solution(num1,num2);
+    cout<<endl;
+    return 0;
+}
