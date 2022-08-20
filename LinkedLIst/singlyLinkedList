@@ -1,0 +1,143 @@
+package LinkedList;
+
+class Node {
+
+	int data;
+	Node next;
+
+	public Node(int data) {
+		this.data = data;
+		this.next = null;
+	}
+}
+
+public class SinglyLinkedList  {
+
+	Node head = null;
+	static int size = 0;
+
+	public static void main(String args[]) throws Exception {
+
+		SinglyLinkedList nde = new SinglyLinkedList();
+		nde.insertLast(10);
+		nde.insertLast(11);
+		nde.insertLast(12);
+		nde.insertLast(13);
+		nde.insertLast(14);
+		nde.insertLast(15);
+		nde.insertMid(19, 2);
+
+		System.out.println("Size " + size);
+		nde.display();
+		nde.removeAt(3);
+		System.out.println(" \n----------  After Deleting  --------------- \n ");
+		nde.display();
+		System.out.println(" \n After Deleting Size :- " + size + "\n");
+		nde.removeStart();
+		System.out.println("----------  After Starting Deleting  --------------- \n ");
+		nde.display();
+		System.out.println(" \n After Deleting Size :- " + size + "\n");
+	}
+
+	
+	public void insertLast(int data) {
+		// TODO Auto-generated method stub
+		Node newNode = new Node(data);
+		Node temp = head;
+		if (head == null)
+			head = newNode;
+		else {
+			while (temp.next != null) {
+				temp = temp.next;
+			}
+			temp.next = newNode;
+		}
+		size++;
+	}
+
+	
+	public void insertFirst(int data) {
+		// TODO Auto-generated method stub
+
+		Node newNode = new Node(data);
+
+		if (head == null)
+			head = newNode;
+		else {
+			newNode.next = head;
+			head = newNode;
+		}
+		size++;
+
+	}
+
+	
+	public Node getNode(int poistion) {
+		// TODO Auto-generated method stub
+		Node temp = head;
+
+		for (int i = 1; i < poistion; i++) {
+			temp = temp.next;
+		}
+		return temp;
+	}
+
+	
+	public void insertMid(int data, int position) throws Exception {
+		// TODO Auto-generated method stub
+		Node newNode = new Node(data);
+
+		if (position < 0)
+			throw new Exception("Invaild Poistion");
+		else {
+
+			Node temp = getNode(position - 1);
+			newNode.next = temp.next;
+			temp.next = newNode;
+			size++;
+		}
+
+	}
+
+	
+	public void removeLast() {
+		// TODO Auto-generated method stub
+		Node temp = getNode(size - 1);
+		temp.next = null;
+		size--;
+
+	}
+
+	
+	public void removeStart() {
+		// TODO Auto-generated method stub
+		Node temp = getNode(1);
+		head = temp.next;
+		size--;
+
+	}
+
+	
+	public void removeAt(int position) throws Exception {
+		// TODO Auto-generated method stub
+		if (position < 0)
+			throw new Exception("invaild position");
+
+		Node prevNode = getNode(position - 1);
+		Node currNode = getNode(position);
+		prevNode.next = currNode.next;
+		size--;
+
+	}
+
+	
+	public void display() {
+		// TODO Auto-generated method stub
+		Node temp = head;
+		while (temp != null) {
+			System.out.print(temp.data + " ,");
+			temp = temp.next;
+
+		}
+	}
+}
