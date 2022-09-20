@@ -77,3 +77,44 @@ public:
         return head;
     }
 };
+
+-------------------------------------------------------------------------------------------
+/*
+T.C  :-  (n)
+S.C  :- 1
+*/
+class Solution {
+public:
+    int length(ListNode *head) {
+        if (head == NULL) {
+            return 0;
+        }
+        return 1 + length(head->next);
+    }
+    
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        
+        if (head == NULL) 
+            return NULL;
+        
+        ListNode * start = new ListNode(); 
+        start->next = head;
+        ListNode *fast = start;
+        ListNode *slow = start;
+        int count =1;
+        
+        while( count<=n) {
+            count++;
+            fast = fast->next;
+        }
+        
+        while(fast->next != NULL) {
+            fast = fast->next;
+            slow = slow->next;
+        }
+       
+       
+        slow->next = slow->next->next;
+        return start->next;
+    }
+};
