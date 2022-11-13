@@ -37,11 +37,19 @@ class Solution {
 public:
     string longestCommonPrefix(vector<string>& strs) {
         string  ans;
+        
+        // Pick first string 
         for(int i=0;i<strs[0].length();i++) {
+            
+            //pick  First String character one by one
             char ch = strs[0][i];
             bool match = true;
             
+            
+            // Pick next String 
             for(int j=1 ; j<strs.size(); j++) {
+            
+               // Compare all String character one by one with First String..
                 if(strs[j][i] != ch) {
                     match = false;
                     break;
